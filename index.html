@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>e-STUDIO 3025AC Manual</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* Light PDF2HTMLEX-style index layout */
     body {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
-      background: url('Aqua.jpg') no-repeat center center fixed;
-      background-size: cover;
+      display: flex;
+      height: 100vh;
       color: #fff;
+      background: #000; /* fallback */
     }
     #sidebar {
       width: 300px;
@@ -44,42 +44,89 @@
       padding: 10px;
       border-radius: 5px;
       transition: 0.2s;
+      cursor: pointer;
     }
-    a:hover {
+    a:hover,
+    a.active {
       background: rgba(255, 255, 255, 0.2);
       color: #0cf;
+    }
+    #content {
+      flex: 1;
+      background: url('Aqua.jpg') no-repeat center center;
+      background-size: cover;
+      overflow: hidden; /* hide scrollbars on parent container */
+      position: relative;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      overflow: hidden; /* hide iframe scrollbar */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+    }
+    iframe::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
   </style>
 </head>
 <body>
   <div id="sidebar">
     <h1>e-STUDIO 3025AC Manual</h1>
-    <ul>
-      <li><a href="AirPrint.html" target="_blank">AirPrint</a></li>
-      <li><a href="Copy.html" target="_blank">Copy</a></li>
-      <li><a href="e-Filing.html" target="_blank">e-Filing</a></li>
-      <li><a href="FAQ.html" target="_blank">FAQ</a></li>
-      <li><a href="FAX Unit Precautions.html" target="_blank">FAX Unit Precautions</a></li>
-      <li><a href="Fax.html" target="_blank">Fax</a></li>
-      <li><a href="Fingerprint Authentication.html" target="_blank">Fingerprint Authentication</a></li>
-      <li><a href="High Security Mode.html" target="_blank">High Security Mode</a></li>
-      <li><a href="Information About Equipment.html" target="_blank">Information About Equipment</a></li>
-      <li><a href="Installation.html" target="_blank">Installation</a></li>
-      <li><a href="IP Faxe Function.html" target="_blank">IP Faxe Function</a></li>
-      <li><a href="Preparation of Paper.html" target="_blank">Preparation of Paper</a></li>
-      <li><a href="Print.html" target="_blank">Print</a></li>
-      <li><a href="Quick Start Guide.html" target="_blank">Quick Start Guide</a></li>
-      <li><a href="Safety Information.html" target="_blank">Safety Information</a></li>
-      <li><a href="Scan.html" target="_blank">Scan</a></li>
-      <li><a href="Specifications.html" target="_blank">Specifications</a></li>
-      <li><a href="Template.html" target="_blank">Template</a></li>
-      <li><a href="TopAccess.html" target="_blank">TopAccess</a></li>
-      <li><a href="Troubleshooting-1.html" target="_blank">Troubleshooting (Part 1)</a></li>
-      <li><a href="Troubleshooting-2.html" target="_blank">Troubleshooting (Part 2)</a></li>
-      <li><a href="User Functions.html" target="_blank">User Functions</a></li>
-      <li><a href="Using Mopria.html" target="_blank">Using Mopria</a></li>
-      <li><a href="Wireless LAN-BT.html" target="_blank">Wireless LAN / Bluetooth</a></li>
+    <ul id="navList">
+      <li><a href="AirPrint.html">AirPrint</a></li>
+      <li><a href="Copy.html">Copy</a></li>
+      <li><a href="e-Filing.html">e-Filing</a></li>
+      <li><a href="FAQ.html">FAQ</a></li>
+      <li><a href="FAX Unit Precautions.html">FAX Unit Precautions</a></li>
+      <li><a href="Fax.html">Fax</a></li>
+      <li><a href="Fingerprint Authentication.html">Fingerprint Authentication</a></li>
+      <li><a href="High Security Mode.html">High Security Mode</a></li>
+      <li><a href="Information About Equipment.html">Information About Equipment</a></li>
+      <li><a href="Installation.html">Installation</a></li>
+      <li><a href="IP Faxe Function.html">IP Faxe Function</a></li>
+      <li><a href="Preparation of Paper.html">Preparation of Paper</a></li>
+      <li><a href="Print.html">Print</a></li>
+      <li><a href="Quick Start Guide.html">Quick Start Guide</a></li>
+      <li><a href="Safety Information.html">Safety Information</a></li>
+      <li><a href="Scan.html">Scan</a></li>
+      <li><a href="Specifications.html">Specifications</a></li>
+      <li><a href="Template.html">Template</a></li>
+      <li><a href="TopAccess.html">TopAccess</a></li>
+      <li><a href="Troubleshooting-1.html">Troubleshooting (Part 1)</a></li>
+      <li><a href="Troubleshooting-2.html">Troubleshooting (Part 2)</a></li>
+      <li><a href="User Functions.html">User Functions</a></li>
+      <li><a href="Using Mopria.html">Using Mopria</a></li>
+      <li><a href="Wireless LAN-BT.html">Wireless LAN / Bluetooth</a></li>
     </ul>
   </div>
+  <div id="content">
+    <iframe id="contentFrame" src="" title="Manual Content"></iframe>
+  </div>
+
+  <script>
+    const navLinks = document.querySelectorAll('#navList a');
+    const iframe = document.getElementById('contentFrame');
+
+    function clearActive() {
+      navLinks.forEach(link => link.classList.remove('active'));
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+        iframe.src = url;
+        clearActive();
+        link.classList.add('active');
+      });
+    });
+
+    // Load the first page by default
+    if (navLinks.length > 0) {
+      navLinks[0].click();
+    }
+  </script>
 </body>
 </html>
