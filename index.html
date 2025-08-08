@@ -12,192 +12,118 @@
       display: flex;
       height: 100vh;
       color: #fff;
-      background: #000;
+      background: #000; /* fallback */
     }
-
     #sidebar {
       width: 300px;
+      max-width: 100%;
       height: 100vh;
       overflow-y: auto;
       background-color: rgba(47, 50, 54, 0.9);
       padding: 20px;
       box-sizing: border-box;
     }
-
     h1 {
       font-size: 22px;
       margin-bottom: 1em;
       color: #0cf;
     }
-
-    .section {
-      margin-bottom: 1em;
-    }
-
-    .section h2 {
-      font-size: 16px;
-      margin: 10px 0;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .section ul {
+    ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
       margin: 0;
-      display: none;
     }
-
-    .section.open ul {
-      display: block;
-    }
-
     li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-
     a {
       text-decoration: none;
       color: #eee;
       background: rgba(255, 255, 255, 0.05);
       display: block;
-      padding: 8px;
-      border-radius: 4px;
+      padding: 10px;
+      border-radius: 5px;
       transition: 0.2s;
       cursor: pointer;
     }
-
     a:hover,
     a.active {
       background: rgba(255, 255, 255, 0.2);
       color: #0cf;
     }
-
     #content {
       flex: 1;
       background: url('Aqua.jpg') no-repeat center center;
       background-size: cover;
-      overflow: hidden;
+      overflow: hidden; /* hide scrollbars on parent container */
       position: relative;
     }
-
     iframe {
       width: 100%;
       height: 100%;
       border: none;
-      overflow: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      overflow: hidden; /* hide iframe scrollbar */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
     }
-
     iframe::-webkit-scrollbar {
-      display: none;
+      display: none; /* Chrome, Safari, Opera */
     }
   </style>
 </head>
 <body>
   <div id="sidebar">
     <h1>e-STUDIO 3025AC Manual</h1>
-
-    <div class="section">
-      <h2>General</h2>
-      <ul>
-        <li><a href="FAQ.html">FAQ</a></li>
-        <li><a href="Quick Start Guide.html">Quick Start Guide</a></li>
-        <li><a href="Installation.html">Installation</a></li>
-        <li><a href="Information About Equipment.html">Information About Equipment</a></li>
-        <li><a href="Specifications.html">Specifications</a></li>
-        <li><a href="Safety Information.html">Safety Information</a></li>
-        <li><a href="Troubleshooting-1.html">Troubleshooting (Part 1)</a></li>
-        <li><a href="Troubleshooting-2.html">Troubleshooting (Part 2)</a></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Print</h2>
-      <ul>
-        <li><a href="Print.html">Print</a></li>
-        <li><a href="AirPrint.html">AirPrint</a></li>
-        <li><a href="Using Mopria.html">Using Mopria</a></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Scan</h2>
-      <ul>
-        <li><a href="Scan.html">Scan</a></li>
-        <li><a href="Template.html">Template</a></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Copy & Fax</h2>
-      <ul>
-        <li><a href="Copy.html">Copy</a></li>
-        <li><a href="Fax.html">Fax</a></li>
-        <li><a href="FAX Unit Precautions.html">FAX Unit Precautions</a></li>
-        <li><a href="IP Faxe Function.html">IP Faxe Function</a></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Security & Admin</h2>
-      <ul>
-        <li><a href="e-Filing.html">e-Filing</a></li>
-        <li><a href="Fingerprint Authentication.html">Fingerprint Authentication</a></li>
-        <li><a href="High Security Mode.html">High Security Mode</a></li>
-        <li><a href="TopAccess.html">TopAccess</a></li>
-        <li><a href="User Functions.html">User Functions</a></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Connectivity</h2>
-      <ul>
-        <li><a href="Wireless LAN-BT.html">Wireless LAN / Bluetooth</a></li>
-        <li><a href="Preparation of Paper.html">Preparation of Paper</a></li>
-      </ul>
-    </div>
+    <ul id="navList">
+      <li><a href="AirPrint.html">AirPrint</a></li>
+      <li><a href="Copy.html">Copy</a></li>
+      <li><a href="e-Filing.html">e-Filing</a></li>
+      <li><a href="FAQ.html">FAQ</a></li>
+      <li><a href="FAX Unit Precautions.html">FAX Unit Precautions</a></li>
+      <li><a href="Fax.html">Fax</a></li>
+      <li><a href="Fingerprint Authentication.html">Fingerprint Authentication</a></li>
+      <li><a href="High Security Mode.html">High Security Mode</a></li>
+      <li><a href="Information About Equipment.html">Information About Equipment</a></li>
+      <li><a href="Installation.html">Installation</a></li>
+      <li><a href="IP Faxe Function.html">IP Faxe Function</a></li>
+      <li><a href="Preparation of Paper.html">Preparation of Paper</a></li>
+      <li><a href="Print.html">Print</a></li>
+      <li><a href="Quick Start Guide.html">Quick Start Guide</a></li>
+      <li><a href="Safety Information.html">Safety Information</a></li>
+      <li><a href="Scan.html">Scan</a></li>
+      <li><a href="Specifications.html">Specifications</a></li>
+      <li><a href="Template.html">Template</a></li>
+      <li><a href="TopAccess.html">TopAccess</a></li>
+      <li><a href="Troubleshooting-1.html">Troubleshooting (Part 1)</a></li>
+      <li><a href="Troubleshooting-2.html">Troubleshooting (Part 2)</a></li>
+      <li><a href="User Functions.html">User Functions</a></li>
+      <li><a href="Using Mopria.html">Using Mopria</a></li>
+      <li><a href="Wireless LAN-BT.html">Wireless LAN / Bluetooth</a></li>
+    </ul>
   </div>
-
   <div id="content">
     <iframe id="contentFrame" src="" title="Manual Content"></iframe>
   </div>
 
   <script>
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('a');
+    const navLinks = document.querySelectorAll('#navList a');
     const iframe = document.getElementById('contentFrame');
 
-    // Toggle sections open/closed
-    sections.forEach(section => {
-      const header = section.querySelector('h2');
-      header.addEventListener('click', () => {
-        section.classList.toggle('open');
-      });
-    });
+    function clearActive() {
+      navLinks.forEach(link => link.classList.remove('active'));
+    }
 
-    // Handle link clicks
     navLinks.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
         const url = link.getAttribute('href');
         iframe.src = url;
-
-        navLinks.forEach(l => l.classList.remove('active'));
+        clearActive();
         link.classList.add('active');
-
-        // Expand parent section if not open
-        const parentSection = link.closest('.section');
-        sections.forEach(s => s.classList.remove('open'));
-        parentSection.classList.add('open');
       });
     });
 
-    // Load the first link by default
+    // Load the first page by default
     if (navLinks.length > 0) {
       navLinks[0].click();
     }
